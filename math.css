@@ -1,0 +1,153 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+.btn {
+    margin: 10px;
+    border-radius: 20px;
+    min-width: 40px;
+}
+
+
+
+svg{
+    position: absolute;
+    left: 0%;
+    z-index: -1;
+    top: 0%;
+}
+
+.circle {
+    fill: #ff00ff;
+    stroke: #ffffff;
+    stroke-width: 2px;
+  }
+
+  .text {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    fill: #ffffff;
+  }
+
+.lyt-btn{
+    height: 70px;
+    width: 150px;
+}
+
+.lyttxt{
+    color: white;
+    font-size: 30px;
+}
+
+.btn {
+    background-color: #0077c2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #005fa1;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.3);
+}
+
+.container-fluid {
+    text-align: center;
+}
+
+body{background-color: rgb(53, 81, 113);
+    font-family: 'Roboto', sans-serif;
+}
+
+.blink {
+    animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#speak-button, .lyt-btn {
+    padding: 10px 20px;
+    font-size: 46px;
+    background-color: #008000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#content_title {
+    font-size: 2vw;
+        text-shadow: 0px px yellowgreen;
+    color: lightgreen;
+}
+
+#content_interactive {
+    font-size: 200px;
+    text-shadow: 0px 1vw green;
+    color:lightgreen;
+    margin-top: -6%;
+    margin-bottom: -3%;
+}
+
+.bgr {
+    height: 100%;
+    width: 70%;
+    top: 0;
+    z-index: -1;
+    opacity: 0.4;
+    margin-top: 30px;
+    position: absolute;
+}
+.hand{
+    margin-left: -105px;
+    margin-top: 170px;
+    width: 120px;
+}
+
+.korrekt_nummer{
+        display: inline-flex;
+        margin: 4px;
+        border-radius: 4px;
+        font-size: 2vw;
+        color: #eee;
+        padding: 0px 10px 0px 10px;
+        text-shadow: 1px 1px #111;
+}
+
+#navigation{
+    margin-top: 50px;
+}

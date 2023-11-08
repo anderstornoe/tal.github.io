@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="math.css" crossorigin="anonymous">
+    <title>10-20-30</title>
+</head>
+
+<body>
+  <!--
+    <svg width="200" height="200">
+        <circle class="circle" cx="100" cy="100" r="40" />
+        <text class="text" x="100" y="100" dominant-baseline="middle" text-anchor="middle">Svar: 0</text>
+    </svg>
+    -->
+
+    
+    <div id="overlay">
+        <button id="speak-button">Klar</button>
+        <img src="hand.png" class="hand">
+    </div>
+    <div class="container">
+    <div class="container-fluid ">
+        <div id="content">
+            
+            <div id="content_title">Tryk på LYT og sig hvad tallet hedder</div>
+            <div id="content_interactive">0</div>
+            <button class="lyt-btn  btn-lg btn-success"><p class="lyttxt">Lyt <img src="ear white.png" class="ear"/></p>  </button><br/>
+            <button class="ok-btn btn btn-info">Næste opgave</button><br/>
+            <button class="10-btn btn btn-info btn-changenum" value = "10">10'erne</button>
+            <button class="100-btn btn btn-info btn-changenum" value = "100">100'erne</button>
+            <button class="1000-btn btn btn-info btn-changenum" value = "1000">1.000'erne</button>
+        </div>
+        <div id="footer_nav"></div>
+    </div>
+    <div class="bgr">Korrekte svar: <br/></div>
+    <!--  <div class="row">
+            <div class="col-6">Hej</div>
+            <div class="col-6">Hej</div>
+        </div>-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="speech_reg.js"></script>
+</body>
+
+</html>
