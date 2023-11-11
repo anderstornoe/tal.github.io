@@ -5,6 +5,9 @@ const SpeechGrammarList =
 const SpeechRecognitionEvent =
   window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent;
 
+const synth = window.speechSynthesis;
+
+
 var score = 0; 
 //media.webspeech.recognition.enable;
 //var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
@@ -44,8 +47,8 @@ speakButton.addEventListener('click', function() {
         overlay.style.display = 'none';
 
     utterance.lang = 'da-DK';
-        utterance.pitch = .6;
-        utterance.rate = .2;
+        utterance.pitch = 1;
+        utterance.rate = .5;
     window.speechSynthesis.speak(utterance);
 
 });
@@ -230,8 +233,8 @@ if (randomNumber < 0.3) {
         
 
         utterance.lang = 'da-DK';
-        utterance.pitch = .6;
-        utterance.rate = .2;
+        utterance.pitch = 1;
+        utterance.rate = .5;
         window.speechSynthesis.speak(utterance);
 
 
@@ -261,8 +264,8 @@ if (randomNumber < 0.5) {
         
         
         utterance.lang = 'da-DK';
-        utterance.pitch = .4;
-        utterance.rate = .3;
+        utterance.pitch = 1;
+        utterance.rate = .5;
         window.speechSynthesis.speak(utterance);
 
         $("#content_title").html("Computeren hørte: " + uttering);
