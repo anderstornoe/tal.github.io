@@ -83,7 +83,7 @@ function stopBlinking() {
 
 $("document").ready(function() {
     newQuestion();
-    console.log("ready Mand");
+    console.log("ready Man-o");
 });
 
 //hints.innerHTML = 'Klik på ';
