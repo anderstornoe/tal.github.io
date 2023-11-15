@@ -69,8 +69,8 @@ speakButton.addEventListener('click', function() {
         overlay.style.display = 'none';
 
     utterance.lang = 'en-GB';
-        //utterance.pitch = 1;
-        //utterance.rate = .5;
+        utterance.pitch = 1;
+        utterance.rate = .5;
     window.speechSynthesis.speak(utterance);
 
 });
