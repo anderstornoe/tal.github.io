@@ -10,6 +10,10 @@ const synth = window.speechSynthesis;
 var osName = navigator.platform;
 var browserName = getBrowserName();
 
+var voices = synth.getVoices();
+
+
+
 function getBrowserName() {
     var userAgent = navigator.userAgent;
     if (userAgent.indexOf("Edg") > -1) {
@@ -65,12 +69,12 @@ const overlay = document.getElementById('overlay');
 const speakButton = document.getElementById('speak-button');
 
 speakButton.addEventListener('click', function() {
-    const utterance = new SpeechSynthesisUtterance('Testing'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
+    const utterance = new SpeechSynthesisUtterance('Tester'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
         overlay.style.display = 'none';
 
-    utterance.lang = 'en-GB';
-        utterance.pitch = 1;
-        utterance.rate = .5;
+    utterance.lang = 'da-DK';
+        //utterance.pitch = 1;
+        //utterance.rate = .5;
     window.speechSynthesis.speak(utterance);
 
 });
