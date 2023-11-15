@@ -69,7 +69,7 @@ const overlay = document.getElementById('overlay');
 const speakButton = document.getElementById('speak-button');
 
 speakButton.addEventListener('click', function() {
-    const utterance = new SpeechSynthesisUtterance('Tester'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
+    const utterance = new SpeechSynthesisUtterance('Tester lige hvordan det lyder'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
         overlay.style.display = 'none';
 
     utterance.lang = 'da-DK';
