@@ -7,6 +7,29 @@ const SpeechRecognitionEvent =
 
 const synth = window.speechSynthesis;
 
+var osName = navigator.platform;
+var browserName = getBrowserName();
+
+function getBrowserName() {
+    var userAgent = navigator.userAgent;
+    if (userAgent.indexOf("Edg") > -1) {
+        return "Microsoft Edge";
+      } else if (userAgent.indexOf("Firefox") > -1) {
+        return "Mozilla Firefox";
+      } else if (userAgent.indexOf("Chrome") > -1) {
+        return "Google Chrome";
+      } else if (userAgent.indexOf("Safari") > -1) {
+        return "Apple Safari";
+      } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+        return "Opera";
+      } else if (userAgent.indexOf("Trident") > -1) {
+        return "Internet Explorer";
+      } else {
+        return "Unknown";
+      }
+  }
+
+console.log("Current browser: " + browserName + ", osName: " + osName);
 
 var score = 0; 
 //media.webspeech.recognition.enable;
@@ -42,13 +65,12 @@ const overlay = document.getElementById('overlay');
 const speakButton = document.getElementById('speak-button');
 
 speakButton.addEventListener('click', function() {
-    const utterance = new SpeechSynthesisUtterance('Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
-    
+    const utterance = new SpeechSynthesisUtterance('Testing'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
         overlay.style.display = 'none';
 
-    utterance.lang = 'da-DK';
-        utterance.pitch = 1;
-        utterance.rate = .5;
+    utterance.lang = 'en-GB';
+        //utterance.pitch = 1;
+        //utterance.rate = .5;
     window.speechSynthesis.speak(utterance);
 
 });
