@@ -12,8 +12,6 @@ var browserName = getBrowserName();
 
 var voices = synth.getVoices();
 
-
-
 function getBrowserName() {
     var userAgent = navigator.userAgent;
     if (userAgent.indexOf("Edg") > -1) {
@@ -48,7 +46,7 @@ var utterance;
 //speechRecognitionList.addFromString(grammar, 1);
 //recognition.grammars = speechRecognitionList;
 //recognition.continuous = false;
-recognition.lang = 'da-DK';
+recognition.lang = 'en-GB';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
@@ -62,17 +60,14 @@ var newnum = 10;
 
 var listening = false;
 
-
-
-
 const overlay = document.getElementById('overlay');
 const speakButton = document.getElementById('speak-button');
 
 speakButton.addEventListener('click', function() {
-    const utterance = new SpeechSynthesisUtterance('Tester lige hvordan det lyder'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
+    const utterance = new SpeechSynthesisUtterance('Lets get started'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
         overlay.style.display = 'none';
 
-    utterance.lang = 'da-DK';
+    utterance.lang = 'en-GB';
         //utterance.pitch = 1;
         //utterance.rate = .5;
     window.speechSynthesis.speak(utterance);
@@ -142,8 +137,6 @@ $(".btn-changenum").click(function() {
 
 
 });
-
-
 
 function newQuestion() {
 
@@ -259,7 +252,7 @@ if (randomNumber < 0.3) {
 }
         
 
-        utterance.lang = 'da-DK';
+        utterance.lang = 'en-GB';
         utterance.pitch = 1;
         utterance.rate = .5;
         window.speechSynthesis.speak(utterance);
@@ -290,7 +283,7 @@ if (randomNumber < 0.5) {
         
         
         
-        utterance.lang = 'da-DK';
+        utterance.lang = 'en-GB';
         utterance.pitch = 1;
         utterance.rate = .5;
         window.speechSynthesis.speak(utterance);
@@ -319,7 +312,7 @@ recognition.onspeechend = function() {
 }*/
 
 recognition.onerror = function(event) {
-    //diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+    console.log('Error occurred in recognition: ' + event.error);
 }
 
 function tween_number(newnum) {
