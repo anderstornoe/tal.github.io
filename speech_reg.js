@@ -251,7 +251,9 @@ function check_results(){
     if (uttering_number == random_number) {
         score++; 
 
-        var pos_feedbackarray = ["Flot", "Super", "Du har lyttet efter i skolen", "Godt gået", "Du er klog", "Hvem skulle ha troet det?", "Du er en stjerne", "Jeg er stolt af dig", "Monster godt", "Mega flot", "Fantastisk", "Korrekt", "Perfekto", "Du styrer", "Godt klaret", "Super",   "Fremragende",
+
+
+        /*var pos_feedbackarray = ["Flot", "Super", "Du har lyttet efter i skolen", "Godt gået", "Du er klog", "Hvem skulle ha troet det?", "Du er en stjerne", "Jeg er stolt af dig", "Monster godt", "Mega flot", "Fantastisk", "Korrekt", "Perfekto", "Du styrer", "Godt klaret", "Super",   "Fremragende",
         "Fantastisk",
         "Fantastisk arbejde",
         "Imponerende",
@@ -280,7 +282,8 @@ function check_results(){
         "Du er en fantastisk lærer",
         "Du er en øjevækker",
         "Du er en inspiration for andre",
-        "Du er en fantastisk kollega"]
+        "Du er en fantastisk kollega"]; */
+        var pos_feedbackarray =["Cool", "Super", "Bravo", "Excellent", "Genial", "OK", "Si", "Yes", "Yeah"];
         var pos2_feedbackarray = ["rigtigt", "korrekt", "passende", "sandt", "nøjagtigt", "fejlfrit", "godt", "præcist", "fabelagtigt", "udmærket"]
 
         var pos_feed1 = pos_feedbackarray[Math.floor(Math.random() * pos_feedbackarray.length)];
