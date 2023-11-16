@@ -11,6 +11,7 @@ var osName = navigator.platform;
 var browserName = getBrowserName();
 
 var voices = synth.getVoices();
+var language = 'en-GB';
 
 function getBrowserName() {
     var userAgent = navigator.userAgent;
@@ -33,6 +34,52 @@ function getBrowserName() {
 
 console.log("Current browser: " + browserName + ", osName: " + osName);
 
+function populateVoiceList() {
+  if (typeof speechSynthesis === "undefined") {
+    return;
+  }
+
+  const voices = speechSynthesis.getVoices();
+
+  for (let i = 0; i < voices.length; i++) {
+    const option = document.createElement("option");
+    option.textContent = `${voices[i].name} (${voices[i].lang})`;
+
+    if (voices[i].default) {
+      option.textContent += " — DEFAULT";
+    }
+
+    option.setAttribute("data-lang", voices[i].lang);
+    option.setAttribute("data-name", voices[i].name);
+    document.getElementById("voiceSelect").appendChild(option);
+  }
+}
+
+populateVoiceList();
+if (
+  typeof speechSynthesis !== "undefined" &&
+  speechSynthesis.onvoiceschanged !== undefined
+) {
+  speechSynthesis.onvoiceschanged = populateVoiceList;
+}
+
+document.getElementById("voiceSelect").addEventListener("change", function() {
+  setLanguage();
+  newQuestion();
+});
+
+function setLanguage() {
+  const selectedOption = document.getElementById("voiceSelect").value;
+  const selectedLang = selectedOption.split(" (")[1].slice(0, -1);
+  console.log("Selected voice: " +  selectedOption + "Selected lang: " + selectedLang);
+  language = selectedLang;
+  recognition.lang = language;
+  // Use the selectedLang variable to set the language wherever you need it
+  
+  // Examle:
+  // speechSynthesisUtterance.lang = selectedLang;
+}
+
 var score = 0; 
 //media.webspeech.recognition.enable;
 //var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
@@ -46,7 +93,7 @@ var utterance;
 //speechRecognitionList.addFromString(grammar, 1);
 //recognition.grammars = speechRecognitionList;
 //recognition.continuous = false;
-recognition.lang = 'en-GB';
+
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
@@ -67,7 +114,7 @@ speakButton.addEventListener('click', function() {
     const utterance = new SpeechSynthesisUtterance('Lets get started'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
         overlay.style.display = 'none';
 
-    utterance.lang = 'en-GB';
+    utterance.lang = language;
         //utterance.pitch = 1;
         //utterance.rate = .5;
     window.speechSynthesis.speak(utterance);
@@ -174,6 +221,10 @@ console.log("random_rgba: " + random_rgba);
 }
 
 recognition.onresult = function(event) {
+  check_results();
+}
+
+function check_results(){
     
     // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
     // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
@@ -198,11 +249,7 @@ recognition.onresult = function(event) {
 
 
     if (uttering_number == random_number) {
-
         score++; 
-        //updateCircleRadius();
-        //updateTextContent();
-        
 
         var pos_feedbackarray = ["Flot", "Super", "Du har lyttet efter i skolen", "Godt gået", "Du er klog", "Hvem skulle ha troet det?", "Du er en stjerne", "Jeg er stolt af dig", "Monster godt", "Mega flot", "Fantastisk", "Korrekt", "Perfekto", "Du styrer", "Godt klaret", "Super",   "Fremragende",
         "Fantastisk",
@@ -253,8 +300,7 @@ if (randomNumber < 0.3) {
   console.log("The random number is greater than or equal to 0.5");
 }
         
-
-        utterance.lang = 'en-GB';
+        utterance.lang = language;
         utterance.pitch = 1;
         utterance.rate = .5;
         window.speechSynthesis.speak(utterance);
@@ -285,7 +331,7 @@ if (randomNumber < 0.5) {
         
         
         
-        utterance.lang = 'en-GB';
+        utterance.lang = language;
         utterance.pitch = 1;
         utterance.rate = .5;
         window.speechSynthesis.speak(utterance);
