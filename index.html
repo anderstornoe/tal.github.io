@@ -21,23 +21,34 @@
 
     
     <div id="overlay">
-        <button id="speak-button">Klar</button>
-        <img src="hand.png" class="hand">
+    
+        <div class="flag_container">
+            <img src="images/lang_dk.jpg" class="lang da-DK">
+            <img src="images/lang_uk.jpg" class="lang en-GB" >
+            <img src="images/lang_ita.jpg" class="lang it-IT">
+            <br/>
+        <div class="go_container"><button id="speak-button">Start</button></div>
+    </div>
+        
     </div>
     <div class="container">
     <div class="container-fluid ">
         
         <div id="content">
-            <select id="voiceSelect"></select>    
+            
             <div id="content_title">Tryk på LYT og sig hvad tallet hedder</div>
             <div id="content_interactive">0</div>
-            <button class="lyt-btn  btn-lg btn-success"><p class="lyttxt">Lyt <img src="ear white.png" class="ear"/></p>  </button><br/>
-            <button class="ok-btn btn btn-info">Næste opgave</button><br/>
+            <button class="lyt-btn  btn-lg btn-success"><p class="lyttxt"><img src="ear white.png" class="ear"/></p>  </button><br/>
+            <button class="ok-btn btn btn-info"><img src="images/refresh.png"></button><br/>
             <button class="10-btn btn btn-info btn-changenum" value = "10">1</button>
             <button class="10-btn btn btn-info btn-changenum" value = "10">10</button>
             <button class="100-btn btn btn-info btn-changenum" value = "100">100</button>
             <button class="1000-btn btn btn-info btn-changenum" value = "1000">1.000</button>
         </div>
+        <br/>
+        <img src="images/lang_dk.jpg" class="lang da-DK">
+        <img src="images/lang_uk.jpg" class="lang en-GB" >
+        <img src="images/lang_ita.jpg" class="lang it-IT">
         <div id="footer_nav"></div>
     </div>
     <div class="bgr">Korrekte svar: <br/></div>
@@ -50,7 +61,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="texts.js"></script>
     <script src="speech_reg.js"></script>
+    
 </body>
 
 </html>

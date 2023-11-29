@@ -7,90 +7,71 @@ const SpeechRecognitionEvent =
 
 const synth = window.speechSynthesis;
 var voices = synth.getVoices();
-var language;
+var language = 'en-GB';
 var pos_feedbackarray;
 var pos2_feedbackarray;
 var neg_feedbackarray;
 var neg_feedbackarray2;
-var neg_utterance1; 
-var neg_utterance2; 
-
-var content_title; 
-var content_title2; 
-
 
 function populateVoiceList() {
-  console.log("populateVoiceList");
   if (typeof speechSynthesis === "undefined") {
     return;
   }
+
   const voices = speechSynthesis.getVoices();
-  console.log ("got voices");
-  const isDaDKVoiceAvailable = voices.find(voice => voice.lang === "da-DK");
 
-if (isDaDKVoiceAvailable) {
-  $(".lang").css("opacity", ".5");
-  $(".da-DK").css("opacity", "1");
-  console.log("da-DK voice is  available");
-  language = "da-DK";
-} else {
-  $(".da-DK").hide();
-  $(".lang").css("opacity", ".5");
-  $(".en-GB").css("opacity", "1");
-  language = "en-GB";
-  console.log("da-DK voice is not available");
-}
+  for (let i = 0; i < voices.length; i++) {
+    const option = document.createElement("option");
+    option.textContent = `${voices[i].name} (${voices[i].lang})`;
+    console.log("Lang found: " + voices[i].lang);
 
-$(".go_container").css("opacity", "1");
-  
+    if (voices[i].default) {
+      option.textContent += " — DEFAULT";
+    }
+
+    option.setAttribute("data-lang", voices[i].lang);
+    option.setAttribute("data-name", voices[i].name);
+    document.getElementById("voiceSelect").appendChild(option);
   }
 
-  const langElements = document.querySelectorAll('.lang');
+  
+}
 
-  langElements.forEach(element => {
-    element.addEventListener('click', function () {
-      classlanguage = this.classList[1];
-      console.log("Selected language: " + classlanguage);
-      setLanguage(classlanguage);
-      newQuestion();
-    });
+const langElements = document.querySelectorAll('.lang');
+
+langElements.forEach(element => {
+  element.addEventListener('click', function () {
+    classlanguage = this.classList[1];
+    console.log("Selected language: " + classlanguage);
+    setLanguage(classlanguage);
   });
+});
 
+populateVoiceList();
+if (
+  typeof speechSynthesis !== "undefined" &&
+  speechSynthesis.onvoiceschanged !== undefined
+) {
+  speechSynthesis.onvoiceschanged = populateVoiceList;
+}
+
+document.getElementById("voiceSelect").addEventListener("change", function () {
+  setLanguage();
+  newQuestion();
+});
 
 function setLanguage(selectedLang) {
-  
+  if (arguments.length > 0) {
     console.log("setLanguage: " + selectedLang);
-    $(".lang").css("opacity", ".5");
-    if (selectedLang == "da-DK"){
-      var utterance = new SpeechSynthesisUtterance('Lad os komme igang med at lære tallene');
-      neg_utterance1 = "lad os prøve et nyt tal";
-      neg_utterance2 = "Nej, lad os prøve et andet tal";
-
-      content_title2 = "Tryk på knappen med øret for at starte. "; 
-      content_title = "Lytter..."
-      
-      $(".da-DK").css("opacity", "1");
-    }else if (selectedLang == "en-GB"){
-      content_title = "Listening..."
-      var utterance = new SpeechSynthesisUtterance('Lets get started learning numbers')
-      neg_utterance1 = "lets try another number";
-      neg_utterance2 = "Nope, lets try another number";
-      content_title2 = "Press the button with your ear to start. ";
-      
-
-      $(".en-GB").css("opacity", "1");
-    }else if(selectedLang == "it-IT"){
-      $(".it-IT").css("opacity", "1");
-      content_title = "Ascoltando..."
-      content_title2 = "Premi il pulsante con l'orecchio per iniziare. ";
-      var utterance = new SpeechSynthesisUtterance('Iniziamo a imparare i numeri');
-      neg_utterance1 = "proviamo un altro numero";
-      neg_utterance2 = "mi dispiace, proviamo un altro numero";
-      
-    }
-    
+    var utterance = new SpeechSynthesisUtterance('Lets get started');
     utterance.lang = selectedLang;
-    window.speechSynthesis.speak(utterance);  
+    window.speechSynthesis.speak(utterance);
+  } else {
+    var selectedOption = document.getElementById("voiceSelect").value;
+    var selectedLang = selectedOption.split(" (")[1].slice(0, -1);
+    console.log("Selected voice: " + selectedOption + "Selected lang: " + selectedLang);
+    
+  }
 
   console.log("selectedLang: " + selectedLang);
     language = selectedLang;
@@ -154,14 +135,7 @@ const overlay = document.getElementById('overlay');
 const speakButton = document.getElementById('speak-button');
 
 speakButton.addEventListener('click', function () {
-  if (language == 'da-DK'){
-    var utterance = new SpeechSynthesisUtterance('Hved DU hvad tallet hedder. Tryk på knappen med øret, og sig hvad tallet hedder.');
-  } else if (language == 'en-GB'){
-    var utterance = new SpeechSynthesisUtterance('Do you know what the number is called. Press the button with the ear, and tell me what it is called.');
-  }else if (language == 'it-IT'){
-    var utterance = new SpeechSynthesisUtterance('Saindo che il numero sia chiamato. Premi il pulsante per verificare.');
-  }
-
+  const utterance = new SpeechSynthesisUtterance('Lets get started'); //Hved DU hvad tallet hedder. Tryk på lyt, så tjekker jeg det for dig.');
 
   overlay.style.display = 'none';
 
@@ -189,7 +163,7 @@ colors.forEach(function(v, i, a){
 let blinkInterval;
 
 function startBlinking() {
-  $("#content_title").html(content_title);
+  $("#content_title").html("Lytter...");
   blinkInterval = setInterval(() => {
     $('.lyt-btn').toggleClass('blink');
   }, 500);
@@ -201,11 +175,8 @@ function stopBlinking() {
 }
 
 $("document").ready(function () {
-  
   newQuestion();
   console.log("ready Man-o");
-  setTimeout(populateVoiceList, 1000);
-  
 });
 
 //hints.innerHTML = 'Klik på ';
@@ -214,13 +185,13 @@ $(".lyt-btn").click(function () {
     recognition.start();
     startBlinking();
     listening = true;
-    $("#content_title").html(content_title);
+    $("#content_title").html("Lytter...");
     console.log('Lyt knap trykket, recognition started');
   } else if (listening == true) {
     recognition.abort();
     stopBlinking();
     listening = false;
-    $("#content_title").html(content_title2);
+    $("#content_title").html("Tryk på lytteknappen");
   }
 });
 
@@ -234,7 +205,7 @@ $(".btn-changenum").click(function () {
   newnum = parseInt($(this).attr("value"));
   console.log("btn-changenum: " + newnum);
   newQuestion();
-  $("#content_title").html(content_title2);
+  $("#content_title").html("Tryk på Lyt for at svare.");
 
 
 });
@@ -243,7 +214,7 @@ $(".btn-changenum").click(function () {
 
 function newQuestion() {
 
-  $("#content_title").html(content_title2);
+  $("#content_title").html("Tryk på Lyt-knappen for at svare.");
 
 
   if (newnum == 1) {
@@ -338,13 +309,10 @@ function check_results() {
     const randomNumber = Math.random();
 
     if (randomNumber < 0.9) {
-
-
-
-      var utterance = new SpeechSynthesisUtterance(neg_feed1 + ", " + uttering + ", " + neg_feed2 + neg_utterance1);
+      var utterance = new SpeechSynthesisUtterance(neg_feed1 + ", " + uttering + ", " + neg_feed2 + "lad os prøve et nyt tal");
       console.log("The random number is less than 0.5");
     } else {
-      var utterance = new SpeechSynthesisUtterance(uttering + neg_utterance2); //+ neg_feed2);
+      var utterance = new SpeechSynthesisUtterance(uttering + "Nej, lad os prøve et andet tal"); //+ neg_feed2);
       console.log("The random number is greater than or equal to 0.5");
     }
 
