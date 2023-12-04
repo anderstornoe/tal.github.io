@@ -217,10 +217,11 @@ $(".lyt-btn").click(function () {
     $("#content_title").html(content_title);
     console.log('Lyt knap trykket, recognition started');
   } else if (listening == true) {
-    recognition.abort();
+    recognition.stop();
     stopBlinking();
     listening = false;
     $("#content_title").html(content_title2);
+    check_results();
   }
 });
 
@@ -291,7 +292,7 @@ function check_results() {
 
   var last = event.results.length - 1;
   var uttering = event.results[last][0].transcript;
-  var uttering_number = uttering.match(/\d+/g);
+  var uttering_number = uttering.replace(/[^\w\s]/g, '');
   console.log("onresult: " + uttering + "uttering_number: " + uttering_number);
   //diagnostic.textContent = 'Jeg hørte du sagde: ' + uttering + '.';
   //bg.style.backgroundColor = color;
@@ -309,10 +310,15 @@ function check_results() {
 
     const randomNumber = Math.random();
 
-    if (randomNumber < 0.3) {
+    if (randomNumber < 0.9) {
       // Do something if the random number is less than 0.5
-      var utterance = new SpeechSynthesisUtterance(pos_feed1 + "......... !! " + random_number + ' er et ' + pos_feed2 + 'svar!');
-
+      if (language =='da-DK') {
+        var utterance = new SpeechSynthesisUtterance(pos_feed1 + "......... !! " + random_number + ' er et ' + pos_feed2 + 'svar!');
+      } else if (language=='en-GB') {
+      var utterance = new SpeechSynthesisUtterance(pos_feed1 + "......... !! " + random_number + ' is a   ' + pos_feed2 + 'result!');
+      }else if (language=='it-IT') {
+          var utterance = new SpeechSynthesisUtterance(pos_feed1 + "......... !! " + random_number + ' è una risposta ' + pos_feed2 + '!');
+        }
       console.log("The random number is less than 0.5");
     } else {
       // Do something else if the random number is greater than or equal to 0.5
