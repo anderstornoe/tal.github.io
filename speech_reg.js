@@ -155,7 +155,7 @@ const speakButton = document.getElementById('speak-button');
 
 speakButton.addEventListener('click', function () {
   if (language == 'da-DK'){
-    var utterance = new SpeechSynthesisUtterance('Hved DU hvad tallet hedder. Tryk på knappen med øret, og sig hvad tallet hedder.');
+    var utterance = new SpeechSynthesisUtterance('Hved du hvad tallet hedder. Tryk på knappen med øret, og fortæl mig hvad tallet hedder.');
   } else if (language == 'en-GB'){
     var utterance = new SpeechSynthesisUtterance('Do you know what the number is called. Press the button with the ear, and tell me what it is called.');
   }else if (language == 'it-IT'){
@@ -167,7 +167,7 @@ speakButton.addEventListener('click', function () {
 
   utterance.lang = language;
   //utterance.pitch = 1;
-  //utterance.rate = .5;
+  utterance.rate = .8;
   window.speechSynthesis.speak(utterance);
 
 });
